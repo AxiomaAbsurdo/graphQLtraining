@@ -15,13 +15,13 @@ const CourseType = new GraphQLObjectType({
     name: { type: GraphQLString },
     language: { type: GraphQLString },
     date: { type: GraphQLString },
-    professor: {
-      type: ProfessorType,
-      resolve(parent, args) {
-        //return professors.find(professor=> professor.id === parent.professorId)
-        return Professor.findById(parent.professorId);
-      }
-    }
+    // professor: {
+    //   type: ProfessorType,
+    //   resolve(parent, args) {
+    //     //return professors.find(professor=> professor.id === parent.professorId)
+    //     return Professor.findById(parent.professorId);
+    //   }
+    // }
   })
 });
 
@@ -31,7 +31,7 @@ const RootQuery = new GraphQLObjectType({
     course: {
       type: CourseType,
       args: {
-        id: { type: CourseType }
+        id: { type: GraphQLString }
       },
       resolve(parent, args) {
         return courses.find(curso => curso.id === args.id);
@@ -40,23 +40,6 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-const ProfessorType = new GraphQLObjectType({
-  name: "Professor",
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    age: { type: GraphQLInt },
-    active: { type: GraphQLBoolean },
-    date: { type: GraphQLString },
-    course: {
-      type: new GraphQLList(CourseType),
-      resolve(parent, args) {
-        //return courses.filter(course=> course.professorId === parent.id)
-        return Course.find({ professorId: parent.id });
-      }
-    }
-  })
-});
 
 module.exports = new GraphQLSchema({
   query: RootQuery
