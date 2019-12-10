@@ -1,0 +1,29 @@
+{
+  "name": "graphQLtraining",
+  "version": "1.0.0",
+  "description": "sample of graphQL application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxiomaAbsurdo/graphQLtraining.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5"
+  },
+  "bugs": {
+    "url": "https://github.com/AxiomaAbsurdo/graphQLtraining/issues"
+  },
+  "homepage": "https://github.com/AxiomaAbsurdo/graphQLtraining#readme"
+}
