@@ -4,8 +4,9 @@
   "description": "sample of graphQL application",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "./node_modules/.bin/babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/polyfill": "^7.7.0",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-watch": "^7.0.0",
     "bcrypt": "^3.0.6",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
@@ -25,5 +32,13 @@
   "bugs": {
     "url": "https://github.com/AxiomaAbsurdo/graphQLtraining/issues"
   },
-  "homepage": "https://github.com/AxiomaAbsurdo/graphQLtraining#readme"
+  "homepage": "https://github.com/AxiomaAbsurdo/graphQLtraining#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3"
+  }
 }

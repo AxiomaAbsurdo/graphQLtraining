@@ -1,5 +1,13 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLList } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLID,
+  GraphQLInt,
+  GraphQLBoolean,
+  GraphQLList
+} = graphql;
 
 var courses = [
   { id: "1", name: "Patron de diseño Java", language: "Java", date: "2019" },
@@ -14,19 +22,12 @@ const CourseType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     language: { type: GraphQLString },
-    date: { type: GraphQLString },
-    // professor: {
-    //   type: ProfessorType,
-    //   resolve(parent, args) {
-    //     //return professors.find(professor=> professor.id === parent.professorId)
-    //     return Professor.findById(parent.professorId);
-    //   }
-    // }
+    date: { type: GraphQLString }
   })
 });
 
-const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+const CursoQuery = new GraphQLObjectType({
+  name: "CursoQuery",
   fields: {
     course: {
       type: CourseType,
@@ -40,7 +41,6 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: CursoQuery
 });
