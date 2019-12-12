@@ -1,4 +1,3 @@
-
 export const types = `
   type Course {
     id: Int!
@@ -14,5 +13,5 @@ export const queries =  `
 `;
 
 export const mutations = `
-  createCourse(title: String!): Course!
+  createCourse(name: String!): Course!
 `;

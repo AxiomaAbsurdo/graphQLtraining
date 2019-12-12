@@ -1,4 +1,6 @@
 import * as course from './course';
+import * as professor from './professor'
+import * as user from './user'
 import gql from 'graphql-tag';
 import { makeExecutableSchema } from 'graphql-tools'
 
@@ -6,7 +8,7 @@ const types = [];
 const queries = [];
 const mutations = [];
 
-const modules = [course];
+const modules = [course, professor, user];
 
 modules.forEach((s) => {
   types.push(s.types);
