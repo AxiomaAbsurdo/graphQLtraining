@@ -1,7 +1,8 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 // const schema = require('./schema/schema')
-const schemaCourse = require('../schema/course');
+// const schemaCourse = require('./schema/course');
+import { schema } from './schema/'
 //const schemaProf = require('./schema/schemaProf');
 // const mongoose = require('mongoose');
 // const auth = require('./utils/auth');
@@ -17,11 +18,18 @@ const schemaCourse = require('../schema/course');
 //   .then(() => console.log('Conectado a MongoDB correctamente'))
 //   .catch(err => console.log('No se ha Conectado a MongoDB correctamente'));
 
+//import * as courseSchema from './schema/course'
+// schema.forEach( s => {
+//   types.push(s.types);
+//   queries.push(s.types);
+//   mutations.push(s.types);
+// })
+
 const app = express();
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: schemaCourse,
+    schema,
     graphiql: true
   })
 );
