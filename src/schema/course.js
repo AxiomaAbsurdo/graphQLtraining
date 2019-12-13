@@ -5,6 +5,13 @@ export const types = `
     language: String!
     date: String!
   }
+
+  input CourseInput{
+    id: Int!
+    name: String!
+    language: String!
+    date: String!
+  }
 `;
 
 export const queries =  `
@@ -13,5 +20,5 @@ export const queries =  `
 `;
 
 export const mutations = `
-  createCourse(name: String!): Course!
+  createCourse(course: CourseInput): Course!
 `;

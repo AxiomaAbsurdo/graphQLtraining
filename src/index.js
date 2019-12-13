@@ -3,8 +3,34 @@ const graphqlHTTP = require('express-graphql');
 // const schema = require('./schema/schema')
 // const schemaCourse = require('./schema/course');
 import { schema } from './schema/'
+
 //const schemaProf = require('./schema/schemaProf');
-// const mongoose = require('mongoose');
+import dbConnect from './dbConnection'
+
+
+const start = async () => {
+  const db = await dbConnect()
+  console.log(db)
+
+  const app = express();
+  app.use(
+    '/graphql',
+    graphqlHTTP({
+      schema,
+      graphiql: true
+    })
+  );
+
+  app.listen(3131, () => {
+    console.log('Escuchando del puerto: 3131');
+  });
+}
+
+try{
+  start()
+}catch(err){
+  console.log(err)
+}
 // const auth = require('./utils/auth');
 
 // console.log(process.env.SECRET_KEY_JWT_COURSE_API);
@@ -25,14 +51,7 @@ import { schema } from './schema/'
 //   mutations.push(s.types);
 // })
 
-const app = express();
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: true
-  })
-);
+
 
 // app.use(auth.checkHeaders);
 
@@ -48,6 +67,4 @@ app.use(
 //   })
 // );
 
-app.listen(3131, () => {
-  console.log('Escuchando del puerto: 3131');
-});
+
