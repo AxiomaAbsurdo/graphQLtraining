@@ -1,26 +1,27 @@
-import { Mongoose } from 'mongoose';
+import { start } from '../index'
 //import { types, queries, mutations } from '../schema/course';
-
-
-
 //const courseTypes = types
 
-const courseSchema = new Mongoose.Schema({
-    name: String,
-    language: String,
-    date: Date.now
-})
 
-const Course = mongoose.model('course', courseSchema)
+export default (start, action, object) =>{
+
+if (action == 'save') {
+    console.log('VEO VEO',  start.db)
+    console.log('veo object ' , object)
+    db.collection('inserts').insertOne(
+        console.log('hizo el insert')
+    )
+}
+}
+
+
+
 //QUERY
 
-mongoose.Schema( (CourseResolver) =>{
-    course = CourseResolver.getCourse(id)
-} )
 
-fetchCourse(id){
-    
-}
+// fetchCourse(id){
+
+// }
 
 
 
@@ -36,4 +37,4 @@ fetchCourse(id){
 // DELETE
 
 
-module.export.Course = CourseQuery
+//module.export.Course = CourseQuery

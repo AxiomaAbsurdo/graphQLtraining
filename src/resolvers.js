@@ -1,6 +1,8 @@
 // import { types, queries, mutations } from './schema/professor';
 // import { types, queries, mutations } from './schema/course';
 import { Mongoose } from 'mongoose';
+import dbHandler from './utils/dbHandler'
+
 
 // const courseType = types.Course
 // const getCourse = queries.getCourse
@@ -21,14 +23,14 @@ import { Mongoose } from 'mongoose';
 // export default {
 
 
-    // const CourseResolver =  (courseType) => {
-    //     getCourse(id){
-    //         return courseType
-    //     },
-    //     allCourses(id, numberOfItems){
-    //         return [Course]
-    //     }
-    // }
+// const CourseResolver =  (courseType) => {
+//     getCourse(id){
+//         return courseType
+//     },
+//     allCourses(id, numberOfItems){
+//         return [Course]
+//     }
+// }
 
 
 // const professorResolver = (professorType) => {
@@ -57,11 +59,42 @@ import { Mongoose } from 'mongoose';
 //     },
 // };
 
-export default { Query: {
-    getCourse : ( parent, args, context ) => {
-        console.log( parent, args, context )
+export default {
+    Query: {
+        getCourse: (parent, args, context) => {
+            console.log(parent, args, context)
+        },
+        allCourses: (parent, args, context) => {
+            console.log(parent, args, context)
+        }
+    },
+    Mutation: {
+        createCourse: (parent, args, context) => {
+            const { course } = args
+
+            const { db } = context
+            
+            //console.log( course )
+            const {
+                name,
+                id,
+                language,
+                date,
+            } = course
+
+            dbHandler(db, 'save', course)
+        }
+
     }
-} } 
+}
+
+// export const courseMutation = {
+//     Mutation: {
+//         createCourse : (parent, CourseInput, context) =>{
+//              CourseInput
+//         } 
+//     }
+// }
 
 //module.export = resolver
 
