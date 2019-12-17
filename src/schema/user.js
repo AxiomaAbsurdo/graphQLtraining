@@ -7,7 +7,7 @@ export const types = `
   }
 `;
 
-export const queries =  `
+export const queries = `
   getUser(id: Int!): User,
   allUser(key: Int!, limit: Int!): [User!]!
 `;

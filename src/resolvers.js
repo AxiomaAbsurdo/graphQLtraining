@@ -1,3 +1,11 @@
+// import { types, queries, mutations } from './schema/professor';
+// import { types, queries, mutations } from './schema/course';
+import { Mongoose } from 'mongoose';
+
+// const courseType = types.Course
+// const getCourse = queries.getCourse
+// const professorType = types.Professor
+
 // import bcrypt from 'bcrypt';
 // import { PubSub } from 'graphql-subscriptions';
 // import _ from 'lodash';
@@ -13,13 +21,56 @@
 // export default {
 
 
+    // const CourseResolver =  (courseType) => {
+    //     getCourse(id){
+    //         return courseType
+    //     },
+    //     allCourses(id, numberOfItems){
+    //         return [Course]
+    //     }
+    // }
+
+
+// const professorResolver = (professorType) => {
+//     Query: {
+//         getProfessor(id) {
+//             return rofessorType;
+//         },
+//         // numberOfItems referes the number of items you want
+//         // in the Professor Array response.
+//         allProfessor(id, numberOfItems) {
+//             return [rofessorType];
+//         }
+//     },
+
+//     Mutations: {
+//         createProfessor(err, ProfessorInput) {
+//             if (ProfessorInput === undefined || ProfessorInput.length < 1) {
+//                 return err.message(
+//                     'Error: the input data have a wrong format or is incompleted'
+//                 );
+//             } else {
+//                 let Professor = ProfessorInputa;
+//                 Mongoose.createProfessor('insert professor', professor);
+//             }
+//         },
+//     },
+// };
+
+export default { Query: {
+    getCourse : ( parent, args, context ) => {
+        console.log( parent, args, context )
+    }
+} } 
+
+//module.export = resolver
 
 //   professor:{
 //             type: ProfessorType,
 //             resolve(parent, args){
 //                 //return professors.find(professor=> professor.id === parent.professorId)
 //                 return Professor.findById(parent.professorId)
-//             } 
+//             }
 //         },
 //   User: {
 //     resolve(parent, args, context){

@@ -14,9 +14,9 @@ export const types = `
   }
 `;
 
-export const queries =  `
+export const queries = `
   getCourse(id: Int!): Course,
-  allCourse(key: Int!, limit: Int!): [Course!]!
+  allCourses(key: Int!, limit: Int!): [Course!]!
 `;
 
 export const mutations = `

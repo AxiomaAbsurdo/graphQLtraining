@@ -1,8 +1,9 @@
 import * as course from './course';
-import * as professor from './professor'
-import * as user from './user'
+import * as professor from './professor';
+import * as user from './user';
 import gql from 'graphql-tag';
-import { makeExecutableSchema } from 'graphql-tools'
+import { makeExecutableSchema } from 'graphql-tools';
+import  resolvers  from '../resolvers'
 
 const types = [];
 const queries = [];
@@ -10,13 +11,13 @@ const mutations = [];
 
 const modules = [course, professor, user];
 
-modules.forEach((s) => {
-  types.push(s.types);
-  queries.push(s.queries);
-  mutations.push(s.mutations);
+modules.forEach(s => {
+    types.push(s.types);
+    queries.push(s.queries);
+    mutations.push(s.mutations);
 });
 
-export const defaultSchema = gql `
+export const defaultSchema = gql`
   
   ${types.join('\n')}
   
@@ -33,5 +34,6 @@ export const defaultSchema = gql `
 `;
 
 export const schema = makeExecutableSchema({
-    typeDefs : defaultSchema
-  });
+    typeDefs: defaultSchema,
+    resolvers
+});

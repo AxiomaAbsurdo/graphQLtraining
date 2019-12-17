@@ -6,9 +6,17 @@ export const types = `
     active: Boolean!
     date: String!
   }
+
+  input ProfessorInput{
+    id: Int!
+    name: String!
+    age: Int!
+    active: Boolean!
+    date: String!
+  }
 `;
 
-export const queries =  `
+export const queries = `
   getProfessor(id: Int!): Professor,
   allProfessor(key: Int!, limit: Int!): [Professor!]!
 `;

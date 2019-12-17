@@ -8,6 +8,8 @@
     "dev": "babel-watch -L src/index.js --watch /src",
     "start": "npm run build && node dist/index.js",
     "serve": "npm run build && node dist/index.js",
+    "prettier": "prettier --config ./.prettierrc --write \"**/*.js\"",
+    "lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +22,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.6",
     "bcrypt": "^3.0.6",
+    "eslint": "^6.7.2",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
@@ -38,6 +41,7 @@
     "@babel/plugin-transform-async-to-generator": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.6",
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "prettier": "1.19.1"
   }
 }
