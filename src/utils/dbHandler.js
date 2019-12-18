@@ -1,40 +1,47 @@
-import { start } from '../index'
-//import { types, queries, mutations } from '../schema/course';
-//const courseTypes = types
+export default (db, action, object) => {
+    //QUERY
+    if (action == 'query') {
+        if (object && Array.isArray(object) == false) {
+            const col = db.collection('documents');
+            return col.findOne({ id: object }).then(result => {
+                return result;
+            });
+        } else {
+            const col = db.collection('documents');
 
+            return col
+                .find()
+                .toArray()
+                .then(result => {
+                    return result;
+                });
+        }
+    }
 
-export default (start, action, object) =>{
+    // INSERTS
+    if (action == 'save') {
+        if (Array.isArray(object) == false) {
+            return db
+                .collection('documents')
+                .insertOne(object)
+                .then(result => {
+                    const [object] = result.ops;
+                    console.log('>>>>> INSERT SINGLE RECORD');
+                    return object;
+                });
+        } else if (Array.isArray(object) == true) {
+            return db
+                .collection('documents')
+                .insertMany(object)
+                .then(result => {
+                    //const [object] = result.ops
+                    console.log('>>>>> INSERT MULTIPLE RECORDS');
+                    return result.ops;
+                });
+        }
+    }
 
-if (action == 'save') {
-    console.log('VEO VEO',  start.db)
-    console.log('veo object ' , object)
-    db.collection('inserts').insertOne(
-        console.log('hizo el insert')
-    )
-}
-}
+    // UPDTATE
 
-
-
-//QUERY
-
-
-// fetchCourse(id){
-
-// }
-
-
-
-// INSERTS
-
-
-
-// UPDTATE
-
-
-
-
-// DELETE
-
-
-//module.export.Course = CourseQuery
+    // DELETE
+};

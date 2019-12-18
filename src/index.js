@@ -1,16 +1,10 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-// const schema = require('./schema/schema')
-// const schemaCourse = require('./schema/course');
 import { schema } from './schema/';
-
-//const schemaProf = require('./schema/schemaProf');
 import dbConnect from './utils/dbConnection';
-
 
 const start = async () => {
     const db = await dbConnect();
-    //console.log(db);
 
     const app = express();
     app.use(
@@ -18,7 +12,7 @@ const start = async () => {
         graphqlHTTP({
             schema,
             graphiql: true,
-            context: { db }
+            context: { db },
         })
     );
 
@@ -32,6 +26,3 @@ try {
 } catch (err) {
     console.log(err);
 }
-
-
-export default start

@@ -16,9 +16,9 @@ export const types = `
 
 export const queries = `
   getCourse(id: Int!): Course,
-  allCourses(key: Int!, limit: Int!): [Course!]!
+  allCourses: [Course!]!
 `;
 
 export const mutations = `
-  createCourse(course: CourseInput): Course!
+  createCourse(course: [CourseInput]): Course!
 `;

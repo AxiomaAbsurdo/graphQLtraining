@@ -3,7 +3,7 @@ import * as professor from './professor';
 import * as user from './user';
 import gql from 'graphql-tag';
 import { makeExecutableSchema } from 'graphql-tools';
-import  resolvers  from '../resolvers'
+import resolvers from '../resolvers';
 
 const types = [];
 const queries = [];
@@ -35,5 +35,5 @@ export const defaultSchema = gql`
 
 export const schema = makeExecutableSchema({
     typeDefs: defaultSchema,
-    resolvers
+    resolvers,
 });
