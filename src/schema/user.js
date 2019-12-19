@@ -5,6 +5,13 @@ export const types = `
     password: String!
     date: String!
   }
+
+  input UserInput{
+    id: Int!
+    email: String!
+    password: String!
+    date: String!
+  }
 `;
 
 export const queries = `
@@ -14,4 +21,6 @@ export const queries = `
 
 export const mutations = `
   createUser(name: String!): User!
+  updateUser(user: [UserInput]!): User!
+  removeUser(id: Int!): Boolean
 `;

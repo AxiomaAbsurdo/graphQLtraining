@@ -20,5 +20,7 @@ export const queries = `
 `;
 
 export const mutations = `
-  createCourse(course: [CourseInput]): Course!
+  createCourse(course: [CourseInput]): [Course!]
+  updateCourse(course: [CourseInput]): [Course!]
+  removeCourse(id: Int!): Boolean
 `;

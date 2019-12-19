@@ -9,20 +9,32 @@ export default {
             return dbHandler(db, 'query', id);
         },
         allCourses: (parent, args, context) => {
-            //let { course } = args
             let { db } = context;
-            //console.log('AAAAAAAAAAAAA', args)
+
             return dbHandler(db, 'query');
         },
+        getProfessor: (parent, args, context) => {
+            let { id } = args;
+            let { db } = context;
+
+            return dbHandler(db, 'query', id);
+        },
+        allProfessors: (parent, args, context) => {},
     },
     Mutation: {
         createCourse: (parent, args, context) => {
             const { course } = args;
             const { db } = context;
-
             const { name, id, language, date } = course;
 
             return dbHandler(db, 'save', course);
+        },
+        createProfessor: (parent, args, context) => {
+            const { professor } = args;
+            const { db } = context;
+            const { id, name, age, active, date } = professor;
+
+            return dbHandler(db, 'save', professor);
         },
     },
 };

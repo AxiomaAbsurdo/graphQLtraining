@@ -1,4 +1,18 @@
 export default (db, action, object) => {
+
+    //Check if received objet is an Array
+    function checkIsArray(object) {
+        
+        let strObject = JSON.stringify(object)
+        strObject = strObject.replace('[', ' ')
+        strObject = strObject.replace(']', ' ')
+        console.log('VEO EL OBJETO FORMATEADO', strObject)
+        object = JSON.parse(strObject)
+        const isArray = Object.prototype.toString.call(object) === '[object Array]';
+        return isArray
+    }
+
+
     //QUERY
     if (action == 'query') {
         if (object && Array.isArray(object) == false) {
@@ -20,7 +34,7 @@ export default (db, action, object) => {
 
     // INSERTS
     if (action == 'save') {
-        if (Array.isArray(object) == false) {
+        if ( checkIsArray(object) == false ) {
             return db
                 .collection('documents')
                 .insertOne(object)
@@ -29,7 +43,8 @@ export default (db, action, object) => {
                     console.log('>>>>> INSERT SINGLE RECORD');
                     return object;
                 });
-        } else if (Array.isArray(object) == true) {
+        } else if ( checkIsArray(object) == true ) {
+            console.log('VEO PROFESOR A INGRESAR ',object)
             return db
                 .collection('documents')
                 .insertMany(object)
