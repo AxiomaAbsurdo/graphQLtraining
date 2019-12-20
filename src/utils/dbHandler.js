@@ -1,17 +1,15 @@
 export default (db, action, object) => {
-
     //Check if received objet is an Array
-    function checkIsArray(object) {
-        
-        let strObject = JSON.stringify(object)
-        strObject = strObject.replace('[', ' ')
-        strObject = strObject.replace(']', ' ')
-        console.log('VEO EL OBJETO FORMATEADO', strObject)
-        object = JSON.parse(strObject)
-        const isArray = Object.prototype.toString.call(object) === '[object Array]';
-        return isArray
-    }
+    // function checkIsArray(object) {
 
+    //     let strObject = JSON.stringify(object)
+    //     strObject = strObject.replace('[', ' ')
+    //     strObject = strObject.replace(']', ' ')
+
+    //     object = JSON.parse(strObject)
+    //     const isArray = Object.prototype.toString.call(object) === '[object Array]';
+    //     return isArray
+    // }
 
     //QUERY
     if (action == 'query') {
@@ -34,29 +32,28 @@ export default (db, action, object) => {
 
     // INSERTS
     if (action == 'save') {
-        if ( checkIsArray(object) == false ) {
-            return db
-                .collection('documents')
-                .insertOne(object)
-                .then(result => {
-                    const [object] = result.ops;
-                    console.log('>>>>> INSERT SINGLE RECORD');
-                    return object;
-                });
-        } else if ( checkIsArray(object) == true ) {
-            console.log('VEO PROFESOR A INGRESAR ',object)
-            return db
-                .collection('documents')
-                .insertMany(object)
-                .then(result => {
-                    //const [object] = result.ops
-                    console.log('>>>>> INSERT MULTIPLE RECORDS');
-                    return result.ops;
-                });
-        }
+        // if ( checkIsArray(object) == false ) {
+        //     return db
+        //         .collection('documents')
+        //         .insertOne(object)
+        //         .then(result => {
+        //             const [object] = result.ops;
+        //             console.log('>>>>> INSERT SINGLE RECORD');
+        //             return object;
+        //         });
+        // } else if ( checkIsArray(object) == true ) {
+        return db
+            .collection('documents')
+            .insertMany(object)
+            .then(result => {
+                //const [object] = result.ops
+                console.log('>>>>> insert successful');
+                return result.ops;
+            });
+        //}
     }
 
-    // UPDTATE
+    // UPDATE
 
     // DELETE
 };
