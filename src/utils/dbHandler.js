@@ -1,15 +1,7 @@
-export default (db, action, object) => {
-    //Check if received objet is an Array
-    // function checkIsArray(object) {
+export default (db, action, object, model) => {
 
-    //     let strObject = JSON.stringify(object)
-    //     strObject = strObject.replace('[', ' ')
-    //     strObject = strObject.replace(']', ' ')
-
-    //     object = JSON.parse(strObject)
-    //     const isArray = Object.prototype.toString.call(object) === '[object Array]';
-    //     return isArray
-    // }
+    const professorModel = model
+    const courseModel = model
 
     //QUERY
     if (action == 'query') {
@@ -20,7 +12,6 @@ export default (db, action, object) => {
             });
         } else {
             const col = db.collection('documents');
-
             return col
                 .find()
                 .toArray()
@@ -32,28 +23,34 @@ export default (db, action, object) => {
 
     // INSERTS
     if (action == 'save') {
-        // if ( checkIsArray(object) == false ) {
-        //     return db
-        //         .collection('documents')
-        //         .insertOne(object)
-        //         .then(result => {
-        //             const [object] = result.ops;
-        //             console.log('>>>>> INSERT SINGLE RECORD');
-        //             return object;
-        //         });
-        // } else if ( checkIsArray(object) == true ) {
         return db
             .collection('documents')
             .insertMany(object)
             .then(result => {
-                //const [object] = result.ops
                 console.log('>>>>> insert successful');
                 return result.ops;
             });
-        //}
     }
 
     // UPDATE
+    if (action == 'update') {
+        const filter = { id: object[0].id };
+        const update = {
+            $set: {
+                name: object[0].name,
+                language: object[0].language,
+                date: object[0].date,
+            },
+        };
+        db.collection('documents')
+            .findOneAndUpdate(filter, update, {
+                returnOriginal: false,
+            })
+            .then(result => {
+                console.log('>>>>> update successful');
+                return result.value;
+            });
+    }
 
     // DELETE
 };
