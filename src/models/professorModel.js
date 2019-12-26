@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+var uniqueValidator = require('mongoose-unique-validator');
 
 const professorSchema = new mongoose.Schema({
     id: {
@@ -22,6 +23,8 @@ const professorSchema = new mongoose.Schema({
         required: false,
     },
 });
+
+professorSchema.plugin(uniqueValidator);
 
 const professor = mongoose.model('professor', professorSchema);
 

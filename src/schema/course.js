@@ -16,11 +16,11 @@ export const types = `
 
 export const queries = `
   getCourse(id: Int!): Course,
-  allCourses: [Course!]!
+  allCourses: [Course]
 `;
 
 export const mutations = `
   createCourse(course: [CourseInput]): [Course!]
-  updateCourse(course: [CourseInput]): [Course!]
+  updateCourse(course: [CourseInput]): Course!
   removeCourse(id: Int!): Boolean
 `;

@@ -30,7 +30,8 @@
     "graphql-tools": "^4.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.4.0",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.5",
+    "mongoose-unique-validator": "^2.0.3"
   },
   "bugs": {
     "url": "https://github.com/AxiomaAbsurdo/graphQLtraining/issues"

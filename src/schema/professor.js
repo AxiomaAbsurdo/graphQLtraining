@@ -18,11 +18,11 @@ export const types = `
 
 export const queries = `
   getProfessor(id: Int!): Professor,
-  allProfessors(key: Int!, limit: Int!): [Professor!]!
+  allProfessors(key: Int!, limit: Int!): [Professor!]
 `;
 
 export const mutations = `
   createProfessor(professor: [ProfessorInput]): [Professor]
-  updateProfessor(professor: [ProfessorInput]): [Professor]
+  updateProfessor(professor: [ProfessorInput]): Professor
   removeProfessor(id: Int!): Boolean
 `;
