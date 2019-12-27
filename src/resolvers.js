@@ -8,24 +8,24 @@ const CourseModel = courseModel;
 export default {
     Query: {
         getCourse: (parent, args, context, CourseModel) => {
-            let { id } = args;
-            let { db } = context;
+            const { id } = args;
+            const { db } = context;
 
             return dbHandler(db, 'query', id, CourseModel);
         },
         allCourses: (parent, args, context, CourseModel) => {
-            let { db } = context;
+            const { db } = context;
 
             return dbHandler(db, 'query', '', CourseModel);
         },
         getProfessor: (parent, args, context, ProfModel) => {
-            let { id } = args;
-            let { db } = context;
+            const { id } = args;
+            const { db } = context;
 
             return dbHandler(db, 'query', id, ProfModel);
         },
         allProfessors: (parent, args, context, ProfModel) => {
-            let { db } = context;
+            const { db } = context;
 
             return dbHandler(db, 'query', '', ProfModel);
         },
@@ -48,7 +48,6 @@ export default {
         createProfessor: (parent, args, context, ProfModel) => {
             const { professor } = args;
             const { db } = context;
-            // const { professorModel } = professorModel;
             const { id, name, age, active, date } = professor;
 
             return dbHandler(db, 'save', professor, ProfModel);
@@ -61,13 +60,16 @@ export default {
             return dbHandler(db, 'update', professor, ProfModel);
         },
         removeCourse: (parent, args, context, CourseModel) => {
-            let { course } = args;
-            let { id } = course
+            const { id } = args;
             const { db } = context;
-            
-            console.log('Aaaaaaaaaaaaaaaa ', course )
 
-            return dbHandler(db, 'remove', course, CourseModel);
+            return dbHandler(db, 'remove', id, CourseModel);
         },
+        removeProfessor: (parent, args, context, ProfModel) => {
+            const { id } = args;
+            const { db } = context;
+
+            return dbHandler(db, 'remove', id, ProfModel);
+        }
     },
 };

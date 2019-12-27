@@ -1,9 +1,4 @@
 export default (db, action, object, model) => {
-
-    console.log('VEO OBJET', object)
-    console.log('VEO ACTION', action)
-    console.log('VEO MODEL', model)
-
     let dbCollection = '';
 
     //SET THE COLLECTION TO USE FOR EACH ENTITY OPERATION
@@ -99,14 +94,21 @@ export default (db, action, object, model) => {
 
     // DELETE
     if (action == 'remove') {
-        console.log('AAAAAAAAAAAAA ',object.id);
         if (model.fieldName == 'removeCourse') {
-            const filter = object.id;
+            const filter = object;
             return db
                 .collection(dbCollection)
-                .findOneAndDelete({"id": filter})
+                .findOneAndDelete({ id: filter })
                 .then(result => {
-                    //console.log(result);
+                    console.log('>>>>> remove successful');
+                    return result.deletedCount;
+                });
+        } else if (model.fieldName == 'removeProfessor') {
+            const filter = object;
+            return db
+                .collection(dbCollection)
+                .findOneAndDelete({ id: filter })
+                .then(result => {
                     console.log('>>>>> remove successful');
                     return result.deletedCount;
                 });
